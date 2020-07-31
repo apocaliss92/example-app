@@ -1,16 +1,20 @@
 {
   "name": "happy-pc",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
+    "build": "nx run-many --target=build --projects=happy-pc-web,api --parallel",
+    "start": "node dist/apps/api/main",
+    "serve_local": "nx run-many --target=serve --projects=happy-pc-web,api --parallel",
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "nx": "nx",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "nx workspace-lint && ng lint",
-    "e2e": "ng e2e",
+    "build_all": "npm run affected:build",
+    "ng_start": "ng serve",
+    "ng_build": "ng build",
+    "ng_test": "ng test",
+    "ng_lint": "nx workspace-lint && ngi lint",
+    "ng_e2e": "ng e2e",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
@@ -28,8 +32,11 @@
     "help": "nx help"
   },
   "private": true,
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
   "dependencies": {
-    "@nrwl/angular": "10.0.7",
     "@angular/animations": "^10.0.0",
     "@angular/common": "^10.0.0",
     "@angular/compiler": "^10.0.0",
@@ -38,12 +45,14 @@
     "@angular/platform-browser": "^10.0.0",
     "@angular/platform-browser-dynamic": "^10.0.0",
     "@angular/router": "^10.0.0",
-    "rxjs": "~6.5.5",
-    "zone.js": "^0.10.2",
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
-    "reflect-metadata": "^0.1.13"
+    "@nestjs/serve-static": "^2.1.3",
+    "@nrwl/angular": "10.0.7",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "~6.5.5",
+    "zone.js": "^0.10.2"
   },
   "devDependencies": {
     "@angular/cli": "~10.0.0",
