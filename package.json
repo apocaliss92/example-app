@@ -3,9 +3,11 @@
   "version": "0.0.2",
   "license": "MIT",
   "scripts": {
-    "build": "nx run-many --target=build --projects=happy-pc-web,api --parallel",
+    "build": "nx run-many --target=build --all --parallel",
+    "lint": "nx run-many --target=lint --all --parallel",
+    "test": "nx run-many --target=test --all --parallel",
     "start": "node dist/apps/api/main",
-    "serve_local": "nx run-many --target=serve --projects=happy-pc-web,api --parallel",
+    "serve_local": "nx run-many --target=serve --all --parallel",
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "nx": "nx",
@@ -14,7 +16,7 @@
     "ng_build": "ng build",
     "ng_test": "ng test",
     "ng_lint": "nx workspace-lint && ngi lint",
-    "ng_e2e": "ng e2e",
+    "e2e": "ng e2e",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
@@ -78,6 +80,14 @@
     "@nrwl/cypress": "10.0.7",
     "@nrwl/node": "10.0.7",
     "@nestjs/schematics": "^7.0.0",
-    "@nestjs/testing": "^7.0.0"
+    "@nestjs/testing": "^7.0.0",
+    "karma": "~4.0.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-jasmine": "~1.1.2",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "jasmine-core": "~2.99.1",
+    "jasmine-spec-reporter": "~4.2.1",
+    "@types/jasmine": "~2.8.8"
   }
 }
