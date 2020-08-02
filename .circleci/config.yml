@@ -6,7 +6,6 @@ workflows:
           branches:
             only:
               - master
-        working_directory: ~/project-name
         docker:
           - image: circleci/node:10-browsers
         steps:
