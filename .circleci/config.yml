@@ -1,38 +1,39 @@
-master_only: &master_only
-  filters:
-    branches:
-      only: master
+jobs:
+  default_workflow:
+      <<: *master_only
+      docker:
+        - image: circleci/node:10-browsers
+      steps:
+        - checkout
+        - run:
+            name: Show current branch
+            command: echo ${CIRCLE_BRANCH}
+        - restore_cache:
+            keys:
+              - v1-dependencies-{{ checksum "package-lock.json" }}
+              - v1-dependencies-
+        - run:
+            name: Install local dependencies
+            command: npm install
+        - save_cache:
+            key: v1-dependencies-{{ checksum "package-lock.json" }}
+            paths:
+              - node_modules
+        - run:
+            name: Linting
+            command: npm run lint
+        - run:
+            name: Testing
+            command: npm run test
+      #      - run:
+      #          name: End to End Test
+      #          command: npm run e2e
 
 workflows:
   version: 2
   lint_and_test:
     jobs:
       - default_workflow:
-          <<: *master_only
-          docker:
-            - image: circleci/node:10-browsers
-          steps:
-            - checkout
-            - run:
-                name: Show current branch
-                command: echo ${CIRCLE_BRANCH}
-            - restore_cache:
-                keys:
-                  - v1-dependencies-{{ checksum "package-lock.json" }}
-                  - v1-dependencies-
-            - run:
-                name: Install local dependencies
-                command: npm install
-            - save_cache:
-                key: v1-dependencies-{{ checksum "package-lock.json" }}
-                paths:
-                  - node_modules
-            - run:
-                name: Linting
-                command: npm run lint
-            - run:
-                name: Testing
-                command: npm run test
-          #      - run:
-          #          name: End to End Test
-          #          command: npm run e2e
+          filters:
+            branches:
+              only: master
