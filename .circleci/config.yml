@@ -1,12 +1,14 @@
+master_only: &master_only
+  filters:
+    branches:
+      only: master
+
 workflows:
   version: 2
   lint_and_test:
     jobs:
       - default_workflow:
-          filters:
-            branches:
-              only:
-                - master
+          <<: *master_only
           docker:
             - image: circleci/node:10-browsers
           steps:
