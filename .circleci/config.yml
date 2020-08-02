@@ -1,8 +1,7 @@
 workflows:
-  version: 2
   lint_and_test:
     jobs:
-      master:
+      - master:
         filters:
           branches:
             only:
