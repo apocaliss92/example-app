@@ -40,7 +40,4 @@ workflows:
   version: 2
   lint_and_test:
     jobs:
-      - default_workflow:
-          filters:
-            branches:
-              only: master
+      - default_workflow
