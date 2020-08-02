@@ -1,5 +1,5 @@
 jobs:
-  master:
+  default_workflow:
     filters:
       branches:
         only:
@@ -36,4 +36,7 @@ workflows:
   version: 2
   lint_and_test:
     jobs:
-      - master
+      - default_workflow
+          filters:
+            branches:
+              only: master
