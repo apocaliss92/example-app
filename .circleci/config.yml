@@ -1,14 +1,10 @@
 version: 2
 
 master_only: &master_only
-#  filters:
-#    branches:
-#      only:
-#        - master
-#        - develop
-#        - /feature-.*/
-#        - /hotfix-.*/
-#        - /hotfix-.*/
+  filters:
+    branches:
+      only:
+        - master
 
 jobs:
   lint_and_test:
@@ -44,5 +40,6 @@ workflows:
   version: 2
   lint_and_test:
     jobs:
-      - lint_and_test:
-          <<: *master_only
+      - lint_and_test
+#      - lint_and_test:
+#          <<: *master_only
