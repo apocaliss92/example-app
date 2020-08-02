@@ -1,5 +1,3 @@
-version: 2
-
 jobs:
   master:
     filters:
@@ -35,6 +33,7 @@ jobs:
   #          command: npm run e2e
 
 workflows:
+  version: 2
   lint_and_test:
     jobs:
       - master
