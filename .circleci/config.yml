@@ -1,3 +1,10 @@
+version: 2
+
+master_only: &master_only
+  filters:
+    branches:
+      only: master
+
 jobs:
   default_workflow:
       <<: *master_only
