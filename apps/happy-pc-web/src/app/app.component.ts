@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '@happy-pc/api-interfaces';
-
 @Component({
-  selector: 'happy-pc-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less'],
+  styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
+  version$ = this.http
+    .get<Version>('/api/version')
+    .pipe(map((res) => res.version));
+
   constructor(private http: HttpClient) {}
 }

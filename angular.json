@@ -25,8 +25,13 @@
               "apps/happy-pc-web/src/favicon.ico",
               "apps/happy-pc-web/src/assets"
             ],
-            "styles": ["apps/happy-pc-web/src/styles.less"],
-            "scripts": []
+            "styles": [
+              "apps/happy-pc-web/src/styles.less"
+            ],
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "@ant-design/colors"
+            ]
           },
           "configurations": {
             "production": {
