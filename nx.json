@@ -1,5 +1,5 @@
 {
-  "npmScope": "happy-pc",
+  "npmScope": "example-app",
   "affected": {
     "defaultBase": "master"
   },
@@ -22,12 +22,14 @@
     }
   },
   "projects": {
-    "happy-pc-web": {
+    "example-app-web": {
       "tags": []
     },
-    "happy-pc-web-e2e": {
+    "example-app-web-e2e": {
       "tags": [],
-      "implicitDependencies": ["happy-pc-web"]
+      "implicitDependencies": [
+        "example-app-web"
+      ]
     },
     "api": {
       "tags": []

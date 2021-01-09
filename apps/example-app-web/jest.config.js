@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'happy-pc-web',
+  name: 'example-app-web',
   preset: '../../jest.config.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,14 +8,14 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
       astTransformers: [
         'jest-preset-angular/build/InlineFilesTransformer',
-        'jest-preset-angular/build/StripStylesTransformer',
-      ],
-    },
+        'jest-preset-angular/build/StripStylesTransformer'
+      ]
+    }
   },
-  coverageDirectory: '../../coverage/apps/happy-pc-web',
+  coverageDirectory: '../../coverage/apps/example-app-web',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
+    'jest-preset-angular/build/HTMLCommentSerializer.js'
+  ]
 };

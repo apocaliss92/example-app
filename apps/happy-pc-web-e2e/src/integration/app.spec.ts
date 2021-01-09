@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('happy-pc-web', () => {
+describe('example-appc-web', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
@@ -8,6 +8,6 @@ describe('happy-pc-web', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to happy-pc-web!');
+    getGreeting().contains('Welcome toexample-app-web!');
   });
 });

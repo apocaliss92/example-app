@@ -12,7 +12,7 @@ import { TodoModule } from './todos/todo.module';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'happy-pc-web'),
+      rootPath: join(__dirname, '..', 'example-app-web'),
       exclude: ['/api*']
     }),
     ConfigModule.forRoot(),

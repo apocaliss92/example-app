@@ -1,32 +1,32 @@
 {
   "version": 1,
   "projects": {
-    "happy-pc-web": {
+    "example-app-web": {
       "projectType": "application",
       "schematics": {
         "@nrwl/angular:component": {
           "style": "less"
         }
       },
-      "root": "apps/happy-pc-web",
-      "sourceRoot": "apps/happy-pc-web/src",
-      "prefix": "happy-pc",
+      "root": "apps/example-app-web",
+      "sourceRoot": "apps/example-app-web/src",
+      "prefix": "example-app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/happy-pc-web",
-            "index": "apps/happy-pc-web/src/index.html",
-            "main": "apps/happy-pc-web/src/main.ts",
-            "polyfills": "apps/happy-pc-web/src/polyfills.ts",
-            "tsConfig": "apps/happy-pc-web/tsconfig.app.json",
+            "outputPath": "dist/apps/example-app-web",
+            "index": "apps/example-app-web/src/index.html",
+            "main": "apps/example-app-web/src/main.ts",
+            "polyfills": "apps/example-app-web/src/polyfills.ts",
+            "tsConfig": "apps/example-app-web/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/happy-pc-web/src/favicon.ico",
-              "apps/happy-pc-web/src/assets"
+              "apps/example-app-web/src/favicon.ico",
+              "apps/example-app-web/src/assets"
             ],
             "styles": [
-              "apps/happy-pc-web/src/styles.less"
+              "apps/example-app-web/src/styles.less"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
@@ -37,8 +37,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/happy-pc-web/src/environments/environment.ts",
-                  "with": "apps/happy-pc-web/src/environments/environment.prod.ts"
+                  "replace": "apps/example-app-web/src/environments/environment.ts",
+                  "with": "apps/example-app-web/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -67,65 +67,73 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "happy-pc-web:build",
-            "proxyConfig": "apps/happy-pc-web/proxy.conf.json"
+            "browserTarget": "example-app-web:build",
+            "proxyConfig": "apps/example-app-web/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "happy-pc-web:build:production"
+              "browserTarget": "example-app-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "happy-pc-web:build"
+            "browserTarget": "example-app-web:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/happy-pc-web/tsconfig.app.json",
-              "apps/happy-pc-web/tsconfig.spec.json"
+              "apps/example-app-web/tsconfig.app.json",
+              "apps/example-app-web/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/happy-pc-web/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/example-app-web/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/happy-pc-web/jest.config.js",
-            "tsConfig": "apps/happy-pc-web/tsconfig.spec.json",
+            "jestConfig": "apps/example-app-web/jest.config.js",
+            "tsConfig": "apps/example-app-web/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "apps/happy-pc-web/src/test-setup.ts"
+            "setupFile": "apps/example-app-web/src/test-setup.ts"
           }
         }
       }
     },
-    "happy-pc-web-e2e": {
-      "root": "apps/happy-pc-web-e2e",
-      "sourceRoot": "apps/happy-pc-web-e2e/src",
+    "example-app-web-e2e": {
+      "root": "apps/example-app-web-e2e",
+      "sourceRoot": "apps/example-app-web-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/happy-pc-web-e2e/cypress.json",
-            "tsConfig": "apps/happy-pc-web-e2e/tsconfig.e2e.json",
-            "devServerTarget": "happy-pc-web:serve"
+            "cypressConfig": "apps/example-app-web-e2e/cypress.json",
+            "tsConfig": "apps/example-app-web-e2e/tsconfig.e2e.json",
+            "devServerTarget": "example-app-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "happy-pc-web:serve:production"
+              "devServerTarget": "example-app-web:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/happy-pc-web-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/happy-pc-web-e2e/**/*"]
+            "tsConfig": [
+              "apps/example-app-web-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/example-app-web-e2e/**/*"
+            ]
           }
         }
       }
@@ -225,5 +233,5 @@
       "unitTestRunner": "jest"
     }
   },
-  "defaultProject": "happy-pc-web"
+  "defaultProject": "example-app-web"
 }
