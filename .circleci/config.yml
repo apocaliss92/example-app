@@ -9,7 +9,7 @@ master_only: &master_only
 jobs:
   lint_and_test:
       docker:
-        - image: circleci/node:10-browsers
+        - image: circleci/node:12-browsers
       steps:
         - checkout
         - run:
