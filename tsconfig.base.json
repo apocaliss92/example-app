@@ -16,7 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@happy-pc/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@example-app/api-interfaces": [
+        "libs/api-interfaces/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

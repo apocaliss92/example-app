@@ -15,7 +15,7 @@ describe('AppService', () => {
 
   describe('getVersion', () => {
     it('should return the version', () => {
-      expect(service.getVersion()).toEqual({ version });
+      expect(service.getVersion()).toEqual(version);
     });
   });
 });

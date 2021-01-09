@@ -17,7 +17,7 @@ describe('AppController', () => {
   describe('getVersion', () => {
     it('should return the version', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getVersion()).toEqual(version);
+      expect(appController.getVersion()).toEqual({ version });
     });
   });
 });
