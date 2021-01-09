@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { version } from '../../../../package.json';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -9,14 +10,14 @@ describe('AppController', () => {
   beforeAll(async () => {
     app = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [AppService]
     }).compile();
   });
 
-  describe('getData', () => {
-    it('should return "Welcome to api!"', () => {
+  describe('getVersion', () => {
+    it('should return the version', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getData()).toEqual({ message: 'Welcome to api!' });
+      expect(appController.getVersion()).toEqual({ version });
     });
   });
 });

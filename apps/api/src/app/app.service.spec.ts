@@ -13,8 +13,8 @@ describe('AppService', () => {
     service = app.get<AppService>(AppService);
   });
 
-  describe('getData', () => {
-    it('should return "Welcome to api!"', () => {
+  describe('getVersion', () => {
+    it('should return the version', () => {
       expect(service.getVersion()).toEqual({ version });
     });
   });
