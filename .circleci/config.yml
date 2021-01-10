@@ -14,8 +14,10 @@ jobs:
           command: |
             VERSION=v.$PROJECT_VERSION.<< pipeline.number >>
             npm version $PROJECT_VERSION.<< pipeline.number >>
+            git config user.email "giangy.ruocco.92@gmail.com"
+            git config user.name "Gianluca Ruocco"
             git remote set-url origin https://$CIRCLE_PROJECT_USERNAME:$GITHUB_TOKEN@github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git
-            git push origin HEAD:<< pipeline.git.branch >> && git push --tags
+            git push origin HEAD:$CIRCLE_BRANCH && git push --tags
   #            gh-release -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1}
   heroku-deploy:
     executor: heroku/default
