@@ -18,13 +18,23 @@ jobs:
             git remote set-url origin https://$CIRCLE_PROJECT_USERNAME:$GITHUB_TOKEN@github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git
             npm version $PROJECT_VERSION.<< pipeline.number >> --message "[skip ci] Update to version %s"
             git push origin HEAD:$CIRCLE_BRANCH && git push --tags
-  #            gh-release -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1}
   heroku-deploy:
-    executor: heroku/default
+    machine:
+      enabled: true
     steps:
       - checkout
-      - heroku/install
-      - heroku/deploy-via-git
+      - run:
+          name: Setup Heroku
+          command: bash .circleci/setup-heroku.sh
+      - run:
+          command: |
+            git push heroku $CIRCLE_TAG:master
+  #  heroku-deploy:
+  #    executor: heroku/default
+  #    steps:
+  #      - checkout
+  #      - heroku/install
+  #      - heroku/deploy-via-git
   lint_and_test:
     docker:
       - image: circleci/node:12-browsers
