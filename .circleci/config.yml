@@ -1,22 +1,37 @@
-version: 2
+version: 2.1
 
-master_only: &master_only
-  filters:
-    branches:
-      only:
-        - master
+orbs:
+  heroku: circleci/heroku@1.2.4
 
 jobs:
+  publish-github-release:
+    docker:
+      - image: circleci/golang:1.8
+    steps:
+      - attach_workspace:
+          at: ./artifacts
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            go get github.com/tcnksm/ghr
+            VERSION=$PROJECT_VERSION
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+  heroku-deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git
   lint_and_test:
-      docker:
-        - image: circleci/node:12-browsers
-      steps:
-        - checkout
-        - run:
-            name: Show current branch
-            command: echo ${CIRCLE_BRANCH}
-        - restore_cache:
-            keys:
+    docker:
+      - image: circleci/node:12-browsers
+    steps:
+      - checkout
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      - restore_cache:
+          keys:
               - v1-dependencies-{{ checksum "package-lock.json" }}
               - v1-dependencies-
         - run:
@@ -40,6 +55,23 @@ workflows:
   version: 2
   lint_and_test:
     jobs:
-      - lint_and_test
-#      - lint_and_test:
-#          <<: *master_only
+      #      - lint_and_test:
+      #            filters:
+      #              branches:
+      #                only:
+      #                  - master
+      - publish-github-release:
+          requires:
+            - lint_and_test
+            filters:
+              branches:
+                only:
+                  - master
+      - heroku-deploy:
+          requires:
+            - lint_and_test
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/

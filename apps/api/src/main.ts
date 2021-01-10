@@ -15,7 +15,7 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   const options = new DocumentBuilder()
     .setTitle('ToDo Application')
-    .setDescription('The ToDoApp API description')
+    .setDescription('ExampleApp API description')
     .setVersion('1.0')
     .addTag('todos')
     .build();
