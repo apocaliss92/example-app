@@ -28,7 +28,7 @@ jobs:
           command: bash .circleci/setup-heroku.sh
       - run:
           command: |
-            git push heroku $CIRCLE_TAG:master
+            git push heroku master:master
   #  heroku-deploy:
   #    executor: heroku/default
   #    steps:
