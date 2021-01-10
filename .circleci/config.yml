@@ -53,7 +53,7 @@ jobs:
 
 workflows:
   version: 2.1
-  main:
+  master:
     jobs:
       #      - lint_and_test:
       #            filters:
