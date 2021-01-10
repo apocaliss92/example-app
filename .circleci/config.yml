@@ -9,15 +9,13 @@ jobs:
       - image: circleci/node:12
     steps:
       - checkout
-      - attach_workspace:
-          at: ./artifacts
       - run:
           name: "Publish Release on GitHub"
           command: |
             npm install gh-release
             VERSION=v.$PROJECT_VERSION.<< pipeline.number >>
             npm version VERSION
-            gh-release -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+            gh-release -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1}
   heroku-deploy:
     executor: heroku/default
     steps:
