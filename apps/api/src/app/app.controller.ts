@@ -13,8 +13,6 @@ export class AppController {
   })
   @Get('version')
   getVersion(): Version {
-    return {
-      version: `${this.appService.getVersion()}`
-    };
+    return this.appService.getVersion();
   }
 }

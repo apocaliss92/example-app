@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Version } from '@example-app/api-interfaces';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class AppComponent {
   version$ = this.http
-    .get<Version>('/api/version')
-    .pipe(map((res) => res.version));
+    .get<Version>('/api/version');
 
   constructor(private http: HttpClient) {}
 }
