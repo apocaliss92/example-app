@@ -9,21 +9,14 @@ jobs:
       - image: circleci/node:12
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - dependencies-{{ checksum "package-lock.json" }}
-            - dependencies-
       - run:
           name: "Publish Release on GitHub"
           command: |
-            npm install gh-release
             VERSION=v.$PROJECT_VERSION.<< pipeline.number >>
-            npm version --no-git-tag-version $PROJECT_VERSION.<< pipeline.number >>
-            gh-release -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1}
-      - save_cache:
-          key: dependencies-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
+            npm version $PROJECT_VERSION.<< pipeline.number >>
+            git remote set-url origin https://$CIRCLE_PROJECT_USERNAME:$GITHUB_TOKEN@github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git
+            git push origin HEAD:<< pipeline.git.branch >> && git push --tags
+  #            gh-release -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1}
   heroku-deploy:
     executor: heroku/default
     steps:
