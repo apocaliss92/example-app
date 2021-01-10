@@ -1,6 +1,6 @@
 {
   "name": "example-app",
-  "version": "0.1.92",
+  "version": "0.1.95",
   "license": "MIT",
   "scripts": {
     "build": "nx run-many --target=build --all --parallel",
