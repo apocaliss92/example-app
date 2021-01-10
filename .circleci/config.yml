@@ -8,16 +8,22 @@ jobs:
     docker:
       - image: circleci/node:12
     steps:
-      - run:
-          command: |
-            npm install -g gh-release
       - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package-lock.json" }}
+            - dependencies-
       - run:
           name: "Publish Release on GitHub"
           command: |
+            npm install gh-release
             VERSION=v.$PROJECT_VERSION.<< pipeline.number >>
             npm version --no-git-tag-version $PROJECT_VERSION.<< pipeline.number >>
             gh-release -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1}
+      - save_cache:
+          key: dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
   heroku-deploy:
     executor: heroku/default
     steps:
@@ -34,13 +40,13 @@ jobs:
           command: echo ${CIRCLE_BRANCH}
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
-            - v1-dependencies-
+            - dependencies-{{ checksum "package-lock.json" }}
+            - dependencies-
       - run:
           name: Install local dependencies
           command: npm install
       - save_cache:
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: dependencies-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
       - run:
