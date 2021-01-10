@@ -6,7 +6,7 @@ orbs:
 jobs:
   publish-github-release:
     docker:
-      - image: circleci/golang:1.8
+      - image: circleci/golang:1.10
     steps:
       - attach_workspace:
           at: ./artifacts
@@ -52,8 +52,8 @@ jobs:
       #          command: npm run e2e
 
 workflows:
-  version: 2
-  lint_and_test:
+  version: 2.1
+  main:
     jobs:
       #      - lint_and_test:
       #            filters:
@@ -61,7 +61,7 @@ workflows:
       #                only:
       #                  - master
       - publish-github-release:
-#          requires:
+          #          requires:
           #            - lint_and_test
           filters:
             branches:
