@@ -34,19 +34,19 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package-lock.json" }}
             - v1-dependencies-
-          - run:
-              name: Install local dependencies
-              command: npm install
-          - save_cache:
-              key: v1-dependencies-{{ checksum "package-lock.json" }}
-              paths:
-                - node_modules
-          - run:
-              name: Linting
-              command: npm run lint
-          - run:
-              name: Testing
-              command: npm run test
+      - run:
+          name: Install local dependencies
+          command: npm install
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Linting
+          command: npm run lint
+      - run:
+          name: Testing
+          command: npm run test
       #      - run:
       #          name: End to End Test
       #          command: npm run e2e
@@ -63,10 +63,10 @@ workflows:
       - publish-github-release:
           requires:
             - lint_and_test
-            filters:
-              branches:
-                only:
-                  - master
+          filters:
+            branches:
+              only:
+                - master
       - heroku-deploy:
           requires:
             - lint_and_test
