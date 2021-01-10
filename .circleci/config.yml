@@ -16,7 +16,7 @@ jobs:
             git config --global user.email circleci@circleci
             git config --global user.name CircleCI
             git remote set-url origin https://$CIRCLE_PROJECT_USERNAME:$GITHUB_TOKEN@github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git
-            npm version $PROJECT_VERSION.<< pipeline.number >> --message "[circle skip] Update to version %s"
+            npm version $PROJECT_VERSION.<< pipeline.number >> --message "[skip ci] Update to version %s"
             git push origin HEAD:$CIRCLE_BRANCH && git push --tags
   #            gh-release -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1}
   heroku-deploy:
