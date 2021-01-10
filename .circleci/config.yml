@@ -14,7 +14,7 @@ jobs:
           command: |
             npm install gh-release
             VERSION=v.$PROJECT_VERSION.<< pipeline.number >>
-            npm version VERSION
+            npm version --no-git-tag-version $PROJECT_VERSION.<< pipeline.number >>
             gh-release -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1}
   heroku-deploy:
     executor: heroku/default
