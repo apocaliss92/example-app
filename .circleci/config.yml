@@ -6,16 +6,17 @@ orbs:
 jobs:
   publish-github-release:
     docker:
-      - image: circleci/golang:1.10
+      - image: circleci/node:12
     steps:
       - attach_workspace:
           at: ./artifacts
       - run:
           name: "Publish Release on GitHub"
           command: |
-            go get github.com/tcnksm/ghr
+            npm install gh-release
             VERSION=v.$PROJECT_VERSION.<< pipeline.number >>
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+            npm version VERSION
+            gh-release -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
   heroku-deploy:
     executor: heroku/default
     steps:
@@ -53,7 +54,7 @@ jobs:
 
 workflows:
   version: 2.1
-  master:
+  main:
     jobs:
       #      - lint_and_test:
       #            filters:
