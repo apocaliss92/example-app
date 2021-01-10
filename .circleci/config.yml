@@ -14,7 +14,7 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             go get github.com/tcnksm/ghr
-            VERSION=$PROJECT_VERSION.$CIRCLE_WORKFLOW_ID
+            VERSION=v.$PROJECT_VERSION.<< pipeline.number >>
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
   heroku-deploy:
     executor: heroku/default
