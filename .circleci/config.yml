@@ -61,15 +61,15 @@ workflows:
       #                only:
       #                  - master
       - publish-github-release:
-          requires:
-            - lint_and_test
+#          requires:
+          #            - lint_and_test
           filters:
             branches:
               only:
                 - master
       - heroku-deploy:
-          requires:
-            - lint_and_test
+          #          requires:
+          #            - lint_and_test
           filters:
             tags:
               only: /^v.*/
