@@ -51,6 +51,90 @@ export class TodosEffects {
     );
   });
 
+  updateTodo$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TodosActions.updateTodo),
+      switchMap(({ todo: todoToUpdate, id }) =>
+        this.todosService.updateTodo(id, todoToUpdate).pipe(
+          mergeMap(todo =>
+            of(TodosActions.updateTodoSuccess({ todo }))
+          ),
+          catchError((error: Error) => {
+            console.error(error);
+            return of(
+              TodosActions.updateTodoFailure({
+                errorMessage: error.message
+              })
+            );
+          })
+        )
+      )
+    );
+  });
+
+  deleteTodo$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TodosActions.deleteTodo),
+      switchMap(({ id }) =>
+        this.todosService.deleteTodo(id).pipe(
+          mergeMap(todo =>
+            of(TodosActions.deleteTodoSuccess())
+          ),
+          catchError((error: Error) => {
+            console.error(error);
+            return of(
+              TodosActions.deleteTodoFailure({
+                errorMessage: error.message
+              })
+            );
+          })
+        )
+      )
+    );
+  });
+
+  markTodoAsDone$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TodosActions.markTodoAsDone),
+      switchMap(({ id }) =>
+        this.todosService.markAsDone(id).pipe(
+          mergeMap(todo =>
+            of(TodosActions.markTodoAsDoneSuccess({ todo }))
+          ),
+          catchError((error: Error) => {
+            console.error(error);
+            return of(
+              TodosActions.markTodoAsDoneFailure({
+                errorMessage: error.message
+              })
+            );
+          })
+        )
+      )
+    );
+  });
+
+  markTodoAsNotDone$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TodosActions.markTodoAsNotDone),
+      switchMap(({ id }) =>
+        this.todosService.markAsDone(id).pipe(
+          mergeMap(todo =>
+            of(TodosActions.markTodoAsNotDoneSuccess({ todo }))
+          ),
+          catchError((error: Error) => {
+            console.error(error);
+            return of(
+              TodosActions.markTodoAsNotDoneFailure({
+                errorMessage: error.message
+              })
+            );
+          })
+        )
+      )
+    );
+  });
+
   constructor(
     private actions$: Actions,
     private store: Store<RootState>,
