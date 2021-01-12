@@ -77,8 +77,6 @@ workflows:
               only:
                 - master
       - heroku-deploy:
-          requires:
-            - lint_and_test
           filters:
             tags:
               only: /^v.*/
