@@ -15,6 +15,9 @@
       "element",
       "app",
       "kebab-case"
-    ]
+    ],
+    "no-empty-interface": {
+      "severity": "warn"
+    }
   }
 }

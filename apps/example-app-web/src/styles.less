@@ -1,1 +1,19 @@
 @import "~ng-zorro-antd/ng-zorro-antd.less";
+
+.flex-row {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+
+  > *:not(:last-child):not(:only-child) {
+    margin-right: 1rem;
+  }
+
+  .flex-row__static {
+    flex: 0 0 auto;
+  }
+
+  .flex-row__dynamic {
+    flex: 1 1 auto;
+  }
+}

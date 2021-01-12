@@ -1,0 +1,65 @@
+<div [nzGutter]="[10, 10]" nz-row nzAlign="middle" nzJustify="center">
+  <div nz-col nzSpan="10">
+    <ng-container *ngrxLet="todosNotDone$; let todosNotDone">
+      <nz-list nzBordered nzFooter="Elements: {{todosNotDone.length}}" nzHeader="Not Done">
+        <nz-list-item *ngFor="let item of todosNotDone">
+          <span nz-typography><mark>{{item.title}}</mark></span>
+          {{ item.description }}
+        </nz-list-item>
+      </nz-list>
+    </ng-container>
+  </div>
+
+  <ng-container *ngrxLet="adding$; let adding">
+    <div nz-col nzSpan="10">
+      <ng-container *ngrxLet="todosDone$; let todosDone">
+        <nz-list nzBordered nzFooter="Elements: {{todosDone.length}}" nzHeader="Done">
+          <nz-list-item *ngFor="let item of todosDone">
+            <span nz-typography><mark>{{item.title}}</mark></span>
+            {{ item.description }}
+          </nz-list-item>
+        </nz-list>
+      </ng-container>
+    </div>
+
+
+    <div nz-col nzSpan="20">
+      <form [formGroup]="formGroup" [nzLayout]="'inline'" nz-form>
+        <div class="flex-row" nz-row nzAlign="middle" nzJustify="center">
+
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-input-group>
+                  <input formControlName="title" nz-input placeholder="Title"/>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your Password!">
+                <nz-input-group>
+                  <textarea formControlName="description" nz-input placeholder="Description...." rows="2"></textarea>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div nz-col nzSpan="4">
+            <nz-form-item>
+              <nz-form-control>
+                <button (click)="addTodo()" [disabled]="!formGroup.valid || adding" nz-button nzType="primary">Add
+                  ToDo
+                </button>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+
+</div>
+

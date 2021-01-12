@@ -1,0 +1,136 @@
+// styleguide colors
+@core-blue: #005699;
+@core-blue-rgb: '145,154,159';
+@core-grey: #91999e;
+@core-grey-rgb: '0,86,153';
+@dark-green: #008292;
+@violet: #554395;
+@dark-blue: #00325d;
+@dark-grey: #585e61;
+@green: #b8c757;
+@red: #c94c38;
+@light-blue: #1890ff3d;
+
+// main Colors
+@primary: @core-blue;
+@secondary: @core-grey;
+
+// theme
+@heading-color-dark: fade(#fff, 100%);
+@text-color-dark: fade(#fff, 85%);
+@text-color-secondary-dark: fade(#fff, 65%);
+
+// highlight colors
+@success: #28a745;
+@info: #17a2b8;
+@warning: #ffc107;
+@error: #dc3545;
+
+// Background color for `<body>`
+@body-background: #fff;
+// Base background color for most components
+@component-background: #fff;
+
+// defaults
+@referensize: 1rem; // ~16px
+@referensize-px: 16px;
+
+@spacing-xxxs: @referensize * 0.25; // ~4px
+@spacing-xxs: @referensize * 0.375; // ~6px
+@spacing-xs: @referensize * 0.625; // ~10px
+@spacing-s: @referensize;
+@spacing-sm: @referensize * 1.25; // ~20px
+@spacing-md: @referensize * 1.5; // ~24px
+@spacing-l: @referensize * 1.875; // ~30px
+@spacing-xl: @referensize * 2.5; // ~40px
+@spacing-xxl: @referensize * 3.125; // ~50px
+
+@border-radius-base: @referensize * 0.25; // ~4px
+@border-radius-sm: @referensize * 0.125; // ~2px
+@border-width-base: @referensize * 0.0625; // ~1px
+
+@outline-width: @referensize * 0.125;
+
+// text
+@disabled: #c7c7c7;
+@text-color: @dark-grey;
+@text-color-muted: #6c757d;
+@text-color-dark: #343a40;
+@heading-color: @text-color-dark;
+
+@font-size-base: @referensize * 0.875; // ~14px;
+@font-size-lg: @referensize * 1.125; // ~18px
+@font-size-sm: @referensize * 0.75; // ~12px
+
+@line-height-base: 1.4;
+@nz-line-height-base: @referensize * 1.4;
+
+@fonts-url: '@{common-assets-url}/public/common/fonts';
+@font-text-regular: 'Proxima Soft W02 Regular', Calibri, sans-serif;
+@font-text-bold: 'Proxima Soft W02 Bold', Calibri, sans-serif;
+@font-heading: 'Unit Offc W10 Ultra', Calibri, sans-serif;
+
+// Animation
+@ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+// Media queries breakpoints
+// Extra small screen / phone
+@screen-xs: 480px;
+@screen-xs-min: @screen-xs;
+
+// Small screen / tablet
+@screen-sm: 576px;
+@screen-sm-min: @screen-sm;
+
+// Medium screen / desktop
+@screen-md: 768px;
+@screen-md-min: @screen-md;
+
+// Large screen / wide desktop
+@screen-lg: 992px;
+@screen-lg-min: @screen-lg;
+
+// Extra large screen / full hd
+@screen-xl: 1200px;
+@screen-xl-min: @screen-xl;
+
+// Extra extra large screen / large desktop
+@screen-xxl: 1600px;
+@screen-xxl-min: @screen-xxl;
+
+// provide a maximum
+@screen-xs-max: (@screen-sm-min - 1px);
+@screen-sm-max: (@screen-md-min - 1px);
+@screen-md-max: (@screen-lg-min - 1px);
+@screen-lg-max: (@screen-xl-min - 1px);
+@screen-xl-max: (@screen-xxl-min - 1px);
+
+// Grid system
+@grid-columns: 24;
+@grid-gutter-width: 0;
+
+// Layouts
+@layout-padding-xs: @spacing-s;
+@layout-padding-sm: @spacing-sm;
+@layout-padding-md: @spacing-md @spacing-l @spacing-s;
+@layout-padding-lg: @spacing-l @spacing-xl @spacing-sm;
+@layout-padding-xl: @spacing-xl @spacing-xxl @spacing-md;
+
+// Header
+@header-default-color: @text-color-dark;
+@header-background: @primary;
+@header-padding-xs: @spacing-l;
+@header-padding-sm: @spacing-l @spacing-sm;
+@header-padding-md: @spacing-md @spacing-l;
+@header-padding-lg: @spacing-md @spacing-xl;
+@header-padding-xl: @spacing-s @spacing-xxl;
+
+// Footer
+@footer-padding-xs: @spacing-s;
+@footer-padding-sm: @spacing-s @spacing-sm;
+@footer-padding-md: @spacing-sm @spacing-l;
+@footer-padding-lg: @spacing-sm @spacing-xl;
+@footer-padding-xl: @spacing-md @spacing-xxl;
+
+// assets folder
+@common-assets-url: './assets';

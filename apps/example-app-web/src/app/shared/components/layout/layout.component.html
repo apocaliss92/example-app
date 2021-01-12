@@ -1,0 +1,28 @@
+<nz-layout class="layout">
+
+  <nz-affix [nzOffsetTop]="0">
+    <nz-header class="header">
+      <ul nz-menu nzMode="horizontal" nzTheme="dark">
+        <li nz-menu-item routerLink="/todos" routerLinkActive="active">Todos</li>
+      </ul>
+    </nz-header>
+  </nz-affix>
+
+  <nz-content class="content">
+    <div nz-row nzJustify="center">
+      <div nz-col nzSpan="22">
+        <nz-card>
+          <router-outlet></router-outlet>
+        </nz-card>
+      </div>
+    </div>
+  </nz-content>
+
+  <nz-footer class="footer">
+    <span>&copy;&nbsp;{{ year }}&nbsp;Gianluca Ruocco</span>
+    <ng-container *ngrxLet="versionData$; let versionData">
+      <span>Version: {{versionData.version}} - Release: {{versionData.release}}</span>
+    </ng-container>
+  </nz-footer>
+
+</nz-layout>

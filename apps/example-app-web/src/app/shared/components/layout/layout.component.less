@@ -1,0 +1,159 @@
+@import '../../../../assets/styles/variables';
+
+.layout {
+  min-height: 100%;
+}
+
+.content {
+  padding-top: 20px;
+}
+
+.footer {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background: transparent;
+
+  @media (max-width: @screen-xs-max) {
+    padding: @footer-padding-xs;
+  }
+  @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+    padding: @footer-padding-sm;
+  }
+  @media (min-width: @screen-md) and (max-width: @screen-md-max) {
+    padding: @footer-padding-md;
+  }
+  @media (min-width: @screen-lg) and (max-width: @screen-lg-max) {
+    padding: @footer-padding-lg;
+  }
+
+  @media (min-width: @screen-md) {
+    flex-flow: row nowrap;
+    > *:not(:last-child):not(:only-child) {
+      padding-right: @spacing-xs;
+      margin-right: @spacing-xs;
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 2px;
+        height: 70%;
+        background: @primary;
+        position: absolute;
+        right: 0;
+        top: 15%;
+      }
+    }
+  }
+}
+
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+
+  @media (max-width: @screen-xs-max) {
+    padding: @header-padding-xs;
+  }
+  @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+    padding: @header-padding-sm;
+  }
+  @media (min-width: @screen-md) and (max-width: @screen-md-max) {
+    padding: @header-padding-md;
+  }
+  @media (min-width: @screen-lg) and (max-width: @screen-lg-max) {
+    padding: @header-padding-lg;
+  }
+
+  @media (min-width: @screen-lg-min) {
+    flex-flow: row nowrap;
+  }
+
+  .header__logo {
+    flex: 0 0 auto;
+
+    @media (min-width: @screen-md) {
+      margin-right: @spacing-md;
+    }
+
+    svg#logo {
+      width: 100%;
+      height: auto;
+      max-width: 200px;
+
+      .primary-fill,
+      .secondary-fill {
+        fill: #fff;
+      }
+    }
+  }
+
+  .header__application-name {
+    flex: 1 0 80%;
+    @media (min-width: @screen-md) {
+      flex: 0 0 auto;
+      margin-right: @spacing-md;
+    }
+    @media (min-width: @screen-lg) {
+      margin-right: @spacing-l;
+    }
+  }
+
+  .header__page-sub-title {
+    flex: 1 0 80%;
+    font-style: italic;
+    margin-left: @spacing-sm;
+    @media (min-width: @screen-md) {
+      flex: 0 0 auto;
+      margin-right: @spacing-md;
+    }
+    @media (min-width: @screen-lg) {
+      margin-right: @spacing-l;
+    }
+  }
+
+  .header__app-nav {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    color: @text-color-secondary-dark;
+
+    @media (max-width: @screen-sm-max) {
+      justify-content: flex-end;
+    }
+
+    .header__module-menu {
+      flex: 1 0 auto;
+      margin-right: @spacing-md;
+      @media (max-width: @screen-md-max) {
+        display: none;
+      }
+    }
+
+    .header__user-menu,
+    .header__localization-menu {
+      flex: 0 0 auto;
+      color: @header-default-color;
+      @media (max-width: @screen-md-max) {
+        display: none;
+      }
+    }
+
+    .header__main-menu {
+      flex: 0 0 auto;
+    }
+  }
+
+  .header__environment-badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+  }
+}
+
