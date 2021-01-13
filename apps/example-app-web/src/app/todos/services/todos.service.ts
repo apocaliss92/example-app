@@ -26,10 +26,10 @@ export class TodosService {
   }
 
   markAsDone(id: string): Observable<Todo> {
-    return this.httpClient.patch<Todo>(`./${environment.apiEndpoint}/todos/markAsDone${id}`, undefined);
+    return this.httpClient.patch<Todo>(`./${environment.apiEndpoint}/todos/markAsDone/${id}`, undefined);
   }
 
   markAsNotDone(id: string): Observable<Todo> {
-    return this.httpClient.patch<Todo>(`./${environment.apiEndpoint}/todos/markAsNotDone${id}`, undefined);
+    return this.httpClient.patch<Todo>(`./${environment.apiEndpoint}/todos/markAsNotDone/${id}`, undefined);
   }
 }

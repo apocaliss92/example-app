@@ -34,4 +34,16 @@ export class TodosComponent extends BaseComponent {
     this.store.dispatch(TodosActions.addTodo({ todo: this.formGroup.value }));
     this.formGroup.reset();
   }
+
+  markAsDone(item: Todo) {
+    this.store.dispatch(TodosActions.markTodoAsDone({ id: String(item.id) }));
+  }
+
+  markAsNotDone(item: Todo) {
+    this.store.dispatch(TodosActions.markTodoAsNotDone({ id: String(item.id) }));
+  }
+
+  delete(item: Todo) {
+    this.store.dispatch(TodosActions.deleteTodo({ id: String(item.id) }));
+  }
 }

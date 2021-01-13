@@ -53,7 +53,8 @@ export const deleteTodo = createAction(
 );
 
 export const deleteTodoSuccess = createAction(
-  `${TODOS_ACTIONS_PREFIX} Delete Todo Success`
+  `${TODOS_ACTIONS_PREFIX} Delete Todo Success`,
+  props<{ id: string }>()
 );
 
 export const deleteTodoFailure = createAction(

@@ -1,27 +1,50 @@
-<div [nzGutter]="[10, 10]" nz-row nzAlign="middle" nzJustify="center">
-  <div nz-col nzSpan="10">
-    <ng-container *ngrxLet="todosNotDone$; let todosNotDone">
-      <nz-list nzBordered nzFooter="Elements: {{todosNotDone.length}}" nzHeader="To Do">
-        <nz-list-item *ngFor="let item of todosNotDone">
-          <span nz-typography><strong>{{item.title}}</strong></span>
-          {{ item.description }}
-        </nz-list-item>
-      </nz-list>
-    </ng-container>
-  </div>
-
+<div [nzGutter]="[10, 10]" nz-row nzAlign="top" nzJustify="center">
   <ng-container *ngrxLet="adding$; let adding">
     <div nz-col nzSpan="10">
-      <ng-container *ngrxLet="todosDone$; let todosDone">
-        <nz-list nzBordered nzFooter="Elements: {{todosDone.length}}" nzHeader="Done">
-          <nz-list-item *ngFor="let item of todosDone">
-            <span nz-typography><strong>{{item.title}}</strong></span>
-            {{ item.description }}
+      <ng-container *ngrxLet="todosNotDone$; let todosNotDone">
+        <nz-list [nzLoading]="adding" nzFooter="Elements: {{todosNotDone.length}}" nzHeader="To Do">
+          <nz-list-item *ngFor="let item of todosNotDone">
+            <nz-list-item-meta>
+              <nz-list-item-meta-title>
+                <a (click)="delete(item)" title="delete Todo"><i nz-icon nzTheme="twotone" nzTwotoneColor="#eb2f96"
+                                                                 nzType="delete"></i></a>     {{item.title}}
+              </nz-list-item-meta-title>
+            </nz-list-item-meta>
+            {{item.description}}
+            <ul nz-list-item-actions>
+              <nz-list-item-action><a (click)="markAsDone(item)" title="check todo as done"><i nz-icon
+                                                                                               nzTheme="twotone"
+                                                                                               nzType="close-square"
+              ></i></a></nz-list-item-action>
+            </ul>
           </nz-list-item>
         </nz-list>
+
       </ng-container>
     </div>
 
+    <div nz-col nzSpan="10">
+      <ng-container *ngrxLet="todosDone$; let todosDone">
+        <nz-list [nzLoading]="adding" nzFooter="Elements: {{todosDone.length}}" nzHeader="Done">
+          <nz-list-item *ngFor="let item of todosDone">
+            <nz-list-item-meta>
+              <nz-list-item-meta-title>
+                <a (click)="delete(item)" title="delete Todo"><i nz-icon nzTheme="twotone" nzTwotoneColor="#eb2f96"
+                                                                 nzType="delete"></i></a>     {{item.title}}
+              </nz-list-item-meta-title>
+            </nz-list-item-meta>
+            {{item.description}}
+            <ul nz-list-item-actions>
+              <nz-list-item-action><a (click)="markAsNotDone(item)"><i nz-icon nzTheme="twotone"
+                                                                       nzTwotoneColor="#52c41a"
+                                                                       nzType="check-square"></i></a>
+              </nz-list-item-action>
+            </ul>
+          </nz-list-item>
+        </nz-list>
+
+      </ng-container>
+    </div>
 
     <div nz-col nzSpan="20">
       <form [formGroup]="formGroup" [nzLayout]="'inline'" nz-form>

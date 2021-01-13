@@ -78,7 +78,7 @@ export class TodosEffects {
       switchMap(({ id }) =>
         this.todosService.deleteTodo(id).pipe(
           mergeMap(todo =>
-            of(TodosActions.deleteTodoSuccess())
+            of(TodosActions.deleteTodoSuccess({ id }))
           ),
           catchError((error: Error) => {
             console.error(error);
@@ -118,7 +118,7 @@ export class TodosEffects {
     return this.actions$.pipe(
       ofType(TodosActions.markTodoAsNotDone),
       switchMap(({ id }) =>
-        this.todosService.markAsDone(id).pipe(
+        this.todosService.markAsNotDone(id).pipe(
           mergeMap(todo =>
             of(TodosActions.markTodoAsNotDoneSuccess({ todo }))
           ),

@@ -3,6 +3,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { IconDefinition } from '@ant-design/icons-angular';
+import { CheckSquareTwoTone, CloseSquareTwoTone, DeleteTwoTone } from '@ant-design/icons-angular/icons';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -19,15 +21,17 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { LayoutComponent } from './components/layout/layout.component';
 import { StatusService } from './services/status.service';
 
+const icons: IconDefinition[] = [DeleteTwoTone, CloseSquareTwoTone, CheckSquareTwoTone];
+
 const modules = [NzLayoutModule, NzAffixModule, NzMenuModule,
   CommonModule, HttpClientModule, NzButtonModule, NzResultModule, ReactiveComponentModule,
-  NzGridModule, NzListModule, NzTypographyModule, NzCardModule, NzFormModule, ReactiveFormsModule, NzInputModule,
-  NzIconModule];
+  NzGridModule, NzListModule, NzTypographyModule, NzCardModule, NzFormModule, ReactiveFormsModule, NzInputModule
+];
 
 @NgModule({
   declarations: [LayoutComponent],
-  imports: [RouterModule, ...modules],
-  exports: [LayoutComponent, ...modules],
+  imports: [RouterModule, ...modules, NzIconModule.forRoot(icons)],
+  exports: [LayoutComponent, ...modules, NzIconModule],
   providers: [StatusService]
 })
 export class SharedModule {}

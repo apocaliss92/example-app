@@ -9,18 +9,16 @@ export const featureStateKey = 'todos';
 export interface State extends EntityState<Todo> {
   loading: boolean;
   errorMessage: string;
-  total: number;
 }
 
 export const todoAdapter: EntityAdapter<Todo> = createEntityAdapterFactory<Todo>('id', [{
-  field: 'done',
+  field: 'id',
   direction: 'ASC'
 }]);
 
 export const initialState: State = todoAdapter.getInitialState({
   loading: false,
-  errorMessage: null,
-  total: 0
+  errorMessage: null
 });
 
 const todosReducer = createReducer(
@@ -29,6 +27,9 @@ const todosReducer = createReducer(
   on(
     TodosActions.loadTodos,
     TodosActions.addTodo,
+    TodosActions.deleteTodo,
+    TodosActions.markTodoAsDone,
+    TodosActions.markTodoAsNotDone,
     (state: State) => ({
       ...state,
       loading: true,
@@ -38,8 +39,7 @@ const todosReducer = createReducer(
   on(TodosActions.loadTodosSuccess, (state: State, { todos }) =>
     todoAdapter.setAll(todos, {
       ...state,
-      loading: false,
-      total: todos.length
+      loading: false
     })
   ),
 
@@ -52,9 +52,23 @@ const todosReducer = createReducer(
   on(TodosActions.addTodoSuccess, (state: State, { todo }) =>
     todoAdapter.addOne(todo, {
       ...state,
-      loading: false,
-      total: state.total + 1
-    }))
+      loading: false
+    })),
+
+  on(TodosActions.deleteTodoSuccess, (state: State, { id }) =>
+    todoAdapter.removeOne(id, {
+      ...state,
+      loading: false
+    })),
+
+  on(
+    TodosActions.markTodoAsDoneSuccess,
+    TodosActions.markTodoAsNotDoneSuccess,
+    (state: State, { todo }) =>
+      todoAdapter.updateOne({ id: todo.id, changes: { ...todo } }, {
+        ...state,
+        loading: false
+      }))
 );
 
 export function reducer(state: State | undefined, action: Action) {
@@ -62,5 +76,4 @@ export function reducer(state: State | undefined, action: Action) {
 }
 
 export const selectItems = todoAdapter.getSelectors().selectAll;
-export const selectTotal = (state: State) => state.total;
 export const selectLoading = (state: State) => state.loading;

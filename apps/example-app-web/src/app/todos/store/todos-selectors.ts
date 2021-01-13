@@ -6,7 +6,6 @@ export const selectTodosFeatureState = createFeatureSelector<fromTodos.State>(
 );
 
 export const selectItems = createSelector(selectTodosFeatureState, fromTodos.selectItems);
-export const selectTotal = createSelector(selectTodosFeatureState, fromTodos.selectTotal);
 export const selectLoading = createSelector(
   selectTodosFeatureState,
   fromTodos.selectLoading
